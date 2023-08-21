@@ -16,10 +16,15 @@ public class HomeController {
 		return "Yo, what's good";
 	}
 	
+//	http://localhost:8080/canYouGreetMe?name=Shantanu
+	@GetMapping("/canYouGreetMe")
+	public String canYouGreetMe(@RequestParam String name) {
+		return "Hey, " + name + " bro";
+	}
 
-//	http://localhost:8080/greetMe?name=Shantanu
+//	http://localhost:8080/greetMe?name=Sharath										proper response
 	@GetMapping("/greetMe")
-	public String greetMe(@RequestParam String name) {
+	public String greetMe(@RequestParam(required = false) String name) {
 		return "Hey, " + name + " bro";
 	}
 	
@@ -52,7 +57,14 @@ public class HomeController {
  * -Used on the variable deceleration in the method parameter.
  * -Is used to fetch values from the request parameter, the parameter name in the request should match to the the variable name in application.
  * -If the appropriate variables(with same name) are not passed the end-point will not even be hit, i.e.
- *  ->	http://localhost:8080/greetMe?naam=piyush	<- will not work at all, because 'naam' is used instead of 'name'
+ *  ->	http://localhost:8080/canYouGreetMe?naam=piyush	<- canYouGreetMe() will not work at all, because 'naam' is used instead of 'name'
+ * 
+ * NOTE: The default behavior of @RequestParam is that it requires all the parameters, but it can be changed using
+ * @RequestParam(required = false) as done in greetMe()
+ * and thus,
+//	http://localhost:8080/greetMe													improper response(no variable)
+//	http://localhost:8080/greetMe?													improper response(no variable)
+//	http://localhost:8080/greetMe?person=Sharath									improper response(variable name differ)
  * 
  * @PathParam
  * -SAME AS @RequestParam, only difference being that if the appropriate variables(with same name) are not passed 
