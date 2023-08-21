@@ -1,0 +1,24 @@
+package com.learn.springboot.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/hello")
+public class HomeController {
+	
+//	@GetMapping("")
+	
+	public String greet() {
+		return "Yo, what's good";
+	}
+}
+
+/* @RequestMapping
+ * Annotation for mapping web requests onto methods in request-handling classes
+ *
+ * Can be used both at the class and at the method level. When 
+ * 
+ * 
+ * 
+ */
